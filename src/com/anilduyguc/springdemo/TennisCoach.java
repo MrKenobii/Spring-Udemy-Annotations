@@ -2,11 +2,12 @@ package com.anilduyguc.springdemo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 @Component
-@Scope("prototype")
 public class TennisCoach implements Coach {
 
     @Autowired
@@ -32,6 +33,15 @@ public class TennisCoach implements Coach {
         return fortuneService.getFortune();
     }
 
+    @PostConstruct
+    public void doMyStartupStuff(){
+        System.out.println(">>Inside doMyStartupStuff() method");
+    }
+
+    @PreDestroy
+    public void doMyCleanupStuff(){
+        System.out.println(">>Inside doMyCleanupStuff() method");
+    }
    /* @Autowired
     public void setFortuneService(FortuneService fortuneService) {
         System.out.println(">>TennisCoach: inside the setter setFortuneService!");
